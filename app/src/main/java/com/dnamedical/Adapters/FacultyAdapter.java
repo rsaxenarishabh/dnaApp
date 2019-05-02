@@ -78,7 +78,7 @@ public class FacultyAdapter extends RecyclerView.Adapter<FacultyAdapter.ViewHold
             return 0;
         }
     }
-
+//ghjgjhgj
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView facultyImage;
         private ProgressBar imageLoader;
