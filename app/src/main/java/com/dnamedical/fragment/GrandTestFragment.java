@@ -123,7 +123,7 @@ public class GrandTestFragment extends Fragment implements TestAdapter.OnCategor
     }
 
     @Override
-    public void onCateClick(String id, String time, String testName, String testQuestion, String testPaid,String TestStatus) {
+    public void onCateClick(String id, String time, String testName, String testQuestion, String testPaid,String TestStatus,String type) {
         if (testPaid.equalsIgnoreCase("Yes")) {
             Intent intent = new Intent(getActivity(), DNAKnowmoreActivity.class);
             startActivity(intent);
@@ -132,6 +132,7 @@ public class GrandTestFragment extends Fragment implements TestAdapter.OnCategor
             intent.putExtra("id", id);
             intent.putExtra("duration", time);
             intent.putExtra("testName", testName);
+            intent.putExtra("type", type);
             intent.putExtra("testQuestion", testQuestion);
             intent.putExtra("testStatus",TestStatus);
             startActivity(intent);

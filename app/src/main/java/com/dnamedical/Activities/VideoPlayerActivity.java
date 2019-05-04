@@ -55,6 +55,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
 import com.dnamedical.R;
 import com.dnamedical.player.EasyExoVideoPlayer;
 import com.dnamedical.player.IEasyExoVideoCallback;
@@ -197,7 +198,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
                 String currentTime = getTimeDurationFormat(upper_exoplayer.getCurrentPosition());
                 String totalDuration = getTimeDurationFormat(upper_exoplayer.getDuration());
-                videoDuration.setText(currentTime+" / "+totalDuration);
+                videoDuration.setText(currentTime + " / " + totalDuration);
             }
         }
 
@@ -235,7 +236,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         public void onSeekChange(EasyExoVideoPlayer player, boolean isSeeking) {
             String currentTime = getTimeDurationFormat(player.getCurrentPosition());
             String totalDuration = getTimeDurationFormat(player.getDuration());
-            videoDuration.setText(currentTime+" / "+totalDuration);
+            videoDuration.setText(currentTime + " / " + totalDuration);
             upper_progress.setVisibility(View.GONE);
         }
 
@@ -252,13 +253,13 @@ public class VideoPlayerActivity extends AppCompatActivity {
         String duration = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
                 TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
                 TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-       if (duration.length()>4){
-           String hh = duration.substring(0,2);
-           if (hh.equalsIgnoreCase("00")){
-               return duration.substring(3,duration.length());
-           }
-       }
-   return duration;
+        if (duration.length() > 4) {
+            String hh = duration.substring(0, 2);
+            if (hh.equalsIgnoreCase("00")) {
+                return duration.substring(3, duration.length());
+            }
+        }
+        return duration;
     }
 
     private void showBottomController(EasyExoVideoPlayer player) {
@@ -277,28 +278,28 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent.hasExtra("free")) {
-             free = intent.getParcelableExtra("free");
+            free = intent.getParcelableExtra("free");
             url = free.getUrl();
             title = free.getTitle();
             textHeading.setText(title);
             textTeacher.setText(free.getSubTitle());
             video_title.setText(free.getDescription());
-            text.setText(""+free.getDescription());
+            text.setText("" + free.getDescription());
 
-            if (free.getSourceTime()!=null && free.getSourceTime().size()>0){
+            if (free.getSourceTime() != null && free.getSourceTime().size() > 0) {
                 TimeListFreeAdapter videoListAdapter = new TimeListFreeAdapter(this);
                 videoListAdapter.setData(free.getSourceTime());
                 videoListAdapter.setListener(new TimeListFreeAdapter.OnTimeClick() {
                     @Override
                     public void onTimeClick(String time) {
-                     if (upper_exoplayer!=null){
-                         int miliis = getTimeMillies(time);
-                         if (upper_exoplayer.isPlaying()){
-                             upper_exoplayer.seekTo(miliis);
-                         }else{
-                             Toast.makeText(VideoPlayerActivity.this,"Please play video first",Toast.LENGTH_LONG).show();
-                         }
-                     }
+                        if (upper_exoplayer != null) {
+                            int miliis = getTimeMillies(time);
+                            if (upper_exoplayer.isPlaying()) {
+                                upper_exoplayer.seekTo(miliis);
+                            } else {
+                                Toast.makeText(VideoPlayerActivity.this, "Please play video first", Toast.LENGTH_LONG).show();
+                            }
+                        }
                     }
                 });
                 recyclerView.setAdapter(videoListAdapter);
@@ -572,13 +573,29 @@ public class VideoPlayerActivity extends AppCompatActivity {
         if (playbackSpeed >= 4.0F) {
             playbackSpeed = NORMAL_PLAYBACK_SPEED;
         }
-        txtSpeed.setText((int) playbackSpeed + "x");
+
+        switch ((int) playbackSpeed) {
+            case 1:
+                txtSpeed.setText(1 + "x");
+                break;
+            case 2:
+                txtSpeed.setText(1.5 + "x");
+
+                break;
+            case 3:
+                txtSpeed.setText(2 + "x");
+
+                break;
+
+
+        }
+
 
         try {
             if (upper_exoplayer != null && upper_exoplayer.isPrepared()) {
                 if (playbackSpeed > NORMAL_PLAYBACK_SPEED) {
                     upper_exoplayer.updateSpeed(getSpeed((int) playbackSpeed));
-                    upper_exoplayer.setVolume(0);
+                    //  upper_exoplayer.setVolume(0);
                     //md_sound.setImageResource(R.drawable.ic_volume_muted);
                 } else {
                     upper_exoplayer.updateSpeed(getSpeed((int) playbackSpeed));
@@ -696,12 +713,11 @@ public class VideoPlayerActivity extends AppCompatActivity {
         switch (playSpeed) {
             case 1:
                 return 1f;
-
             case 2:
-                return 4f;
+                return 1.5f;
 
             case 3:
-                return 8f;
+                return 2f;
         }
         return 1f;
     }

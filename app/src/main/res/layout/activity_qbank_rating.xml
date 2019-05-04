@@ -174,7 +174,7 @@
                     android:background="@color/profile_cardtext"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Not NEET Pattern"
+                    android:text="Explanations are not clear"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -212,6 +212,7 @@
                     android:paddingTop="10dp"
                     android:paddingRight="20sp"
                     android:paddingBottom="10dp"
+                    android:visibility="gone"
                     android:text="Explanations are not clear"
                     android:textColor="@color/white"
                     android:textSize="16sp" />

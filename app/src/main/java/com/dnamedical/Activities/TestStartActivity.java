@@ -43,15 +43,16 @@ public class TestStartActivity extends AppCompatActivity {
             id = getIntent().getStringExtra("id");
             duration = getIntent().getStringExtra("duration");
             testName = getIntent().getStringExtra("testName");
+            String type = getIntent().getStringExtra("type");
             testQuestion = getIntent().getStringExtra("testQuestion");
             check_status = Integer.parseInt(getIntent().getStringExtra("testStatus"));
             if (check_status == 0) {
                 testTopic.setText(testName);
-                testInformation.setText("The test contains" + " " + testQuestion + " " + "questions from Psychiatry with a duration of" + " " + duration + "" + ".");
+                updateTestTypeText(type);
                 btnStart.setText("Start The Test");
             } else {
                 testTopic.setText(testName);
-                testInformation.setText("The test contains" + " " + testQuestion + " " + "questions from Psychiatry with a duration of" + " " + duration + "" + ".");
+              updateTestTypeText(type);
                 btnStart.setText("Review The Test");
             }
 
@@ -72,8 +73,23 @@ public class TestStartActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void updateTestTypeText(String type) {
+        switch (type){
+            case "Grand Test":
+                testInformation.setText("This test contains "+testQuestion+" Q's from all 19 Subjects of MBBS with time duration of "+duration);
+                break;
 
+            case "Mini Test":
+                testInformation.setText("This test contains "+testQuestion+" Q's from all 19 Subjects of MBBS with time duration of "+duration);
+                break;
+
+            case "Subject Wise Test":
+                testInformation.setText("This test contains "+testQuestion+" Q's from all 19 Subjects of MBBS with time duration of "+duration);
+                break;
+
+        }
     }
 
     private void StartTest() {

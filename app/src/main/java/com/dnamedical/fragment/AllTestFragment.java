@@ -157,7 +157,7 @@ public class AllTestFragment extends Fragment implements TestAdapter.OnCategoryC
     }
 
     @Override
-    public void onCateClick(String id, String time, String testName, String testQuestion, String testPaid,String TestStatus) {
+    public void onCateClick(String id, String time, String testName, String testQuestion, String testPaid,String TestStatus,String type) {
 
 
             if (testPaid.equalsIgnoreCase("Yes")) {
@@ -167,7 +167,9 @@ public class AllTestFragment extends Fragment implements TestAdapter.OnCategoryC
                 Intent intent = new Intent(getActivity(), TestStartActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("duration", time);
+
                 intent.putExtra("testName", testName);
+                intent.putExtra("type", type);
                 intent.putExtra("testQuestion", testQuestion);
                 intent.putExtra("testStatus",TestStatus);
                 startActivity(intent);

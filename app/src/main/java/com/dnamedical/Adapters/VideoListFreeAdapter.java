@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.dnamedical.Models.video.Free;
 import com.dnamedical.R;
 
@@ -43,7 +44,10 @@ public class VideoListFreeAdapter extends RecyclerView.Adapter<VideoListFreeAdap
     public void onBindViewHolder(final VideoListFreeAdapter.ViewHolder holder, final int position) {
         holder.title.setText(freeList.get(holder.getAdapterPosition()).getTitle());
         holder.index.setText("" + (holder.getAdapterPosition() + 1));
-        Picasso.with(applicationContext).load(freeList.get(holder.getAdapterPosition()).getDr_img()).into(holder.imageDoctor);
+        Picasso.with(applicationContext)
+                .load(freeList.get(holder.getAdapterPosition()).getDr_img())
+                .error(R.drawable.profile_image_know_more)
+                .into(holder.imageDoctor);
         holder.doctorName.setText(freeList.get(holder.getAdapterPosition()).getSubTitle());
 
 
