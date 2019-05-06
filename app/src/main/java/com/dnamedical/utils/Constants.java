@@ -18,4 +18,5 @@ public class Constants {
 
 
     public static final int CAPTURE_IMAGE =209 ;
+    public static final String SOFT_UPGRADE_SKIP = "soft_upgrade_skip";
 }

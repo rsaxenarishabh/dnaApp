@@ -69,20 +69,16 @@ public class SplashActivity extends AppCompatActivity {
                     if (response.body() != null) {
                         if (response.body().getStatus().equalsIgnoreCase("1")) {
                             playstoreUpdateResponse = response.body();
-                            if (playstoreUpdateResponse != null && playstoreUpdateResponse.getDetail().size() > 0) {
+                            if (playstoreUpdateResponse != null &&
+                                    playstoreUpdateResponse.getDetail().size() > 0) {
                                 if (playstoreUpdateResponse
-                                        .getDetail().get(0)
-                                        .getAppName()
-                                        .equalsIgnoreCase("dnaapp")
-                                        && playstoreUpdateResponse.getDetail().get(0).getAppVersion().equalsIgnoreCase(String.valueOf(BuildConfig.VERSION_CODE))) {
-                                    alertDialoge();
-                                    Toast.makeText(SplashActivity.this, "First", Toast.LENGTH_SHORT).show();
+                                        .getDetail().get(0).getForceUpgrade().equalsIgnoreCase("true")) {
+                                  forceToUpgradeDialog(true);
+                                   // Toast.makeText(SplashActivity.this, "First", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    alertDialoge();
-                                    Toast.makeText(SplashActivity.this, "Second", Toast.LENGTH_SHORT).show();
+                                    splashCall();
+                                   // Toast.makeText(SplashActivity.this, "Second", Toast.LENGTH_SHORT).show();
                                 }
-
-
                             }
                         }
                     }
@@ -103,41 +99,37 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    private void alertDialoge() {
-        final android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(this);
-        // ...Irrelevant code for customizing the buttons and titl
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.update_playstore, null);
-        dialogBuilder.setView(dialogView);
 
-        final android.app.AlertDialog dialog = dialogBuilder.create();
-        Button btn_yes = dialogView.findViewById(R.id.btn_done);
-        TextView text_cancel = dialogView.findViewById(R.id.text_cancel);
-        text_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private void forceToUpgradeDialog(boolean isForceUpdate) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
+        builder.setTitle("UPGRADE!");
+        builder.setCancelable(false);
+        builder.setMessage("In order to continue, you must update the DNA  application. This should only take a few moments.\n");
+
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)));
+            }
+            dialog.dismiss();
+        });
+
+        if (!isForceUpdate) {
+            builder.setNegativeButton("SKIP", (dialog, which) -> {
+                DnaPrefs.putBoolean(SplashActivity.this, Constants.SOFT_UPGRADE_SKIP, true);
                 dialog.dismiss();
+            });
+        }
 
-            }
-        });
+        AlertDialog dialog = builder.show();
 
-        btn_yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(android.content.Intent.ACTION_VIEW);
-                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.dnamedical"));
-                startActivity(i);
-                //Toast.makeText(SplashActivity.this, "Open", Toast.LENGTH_SHORT).show();
-            }
-        });
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
-
-        //y position
-
-        dialog.show();
-
+        if (isFinishing() && dialog != null) {
+            dialog.dismiss();
+        }
     }
+
+
 
 
     private void splashCall() {
