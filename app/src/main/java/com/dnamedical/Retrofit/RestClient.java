@@ -20,6 +20,7 @@ import com.dnamedical.Models.franchies.FranchiesResponse;
 import com.dnamedical.Models.qbank.QbankResponse;
 import com.dnamedical.Models.qbankstart.QbankstartResponse;
 import com.dnamedical.Models.test.TestQuestionData;
+import com.dnamedical.Models.updateplaystore.PlaystoreUpdateResponse;
 import com.dnamedical.Models.video.VideoList;
 import com.dnamedical.Models.login.loginResponse;
 import com.dnamedical.Models.maincat.CategoryDetailData;
@@ -68,6 +69,10 @@ public class RestClient {
 
     public static void getState(Callback<StateListResponse> callback) {
         RetrofitClient.getClient().stateData().enqueue(callback);
+    }
+
+    public static void playstoreUpdate(Callback<PlaystoreUpdateResponse> playstoreUpdateResponseCallback) {
+        RetrofitClient.getClient().playstoreUpdate().enqueue(playstoreUpdateResponseCallback);
     }
 
 

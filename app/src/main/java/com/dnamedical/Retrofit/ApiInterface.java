@@ -19,6 +19,7 @@ import com.dnamedical.Models.franchies.FranchiesResponse;
 import com.dnamedical.Models.qbank.QbankResponse;
 import com.dnamedical.Models.qbankstart.QbankstartResponse;
 import com.dnamedical.Models.test.TestQuestionData;
+import com.dnamedical.Models.updateplaystore.PlaystoreUpdateResponse;
 import com.dnamedical.Models.video.VideoList;
 import com.dnamedical.Models.login.loginResponse;
 import com.dnamedical.Models.maincat.CategoryDetailData;
@@ -72,6 +73,11 @@ public interface ApiInterface {
 
     @GET("api/api.php?req=allfile")
     Call<VideoList> getVideos(@Query("sub_child_cat") String sub_child_cat, @Query("file_type") String fileType);
+
+    @GET("api/api.php?req=getreleasedetail")
+    Call<PlaystoreUpdateResponse> playstoreUpdate();
+
+
 
 
     @Multipart
