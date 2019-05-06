@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
@@ -50,6 +51,12 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        UpdateApiCall();
+    }
+
     private void UpdateApiCall() {
 
 
@@ -68,8 +75,7 @@ public class SplashActivity extends AppCompatActivity {
                                         .getAppName()
                                         .equalsIgnoreCase("dnaapp")
                                         && playstoreUpdateResponse.getDetail().get(0).getAppVersion().equalsIgnoreCase(String.valueOf(BuildConfig.VERSION_CODE))) {
-                                alertDialoge();
-
+                                    alertDialoge();
                                     Toast.makeText(SplashActivity.this, "First", Toast.LENGTH_SHORT).show();
                                 } else {
                                     alertDialoge();
@@ -118,19 +124,20 @@ public class SplashActivity extends AppCompatActivity {
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(SplashActivity.this, "Open", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(android.content.Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.dnamedical"));
+                startActivity(i);
+                //Toast.makeText(SplashActivity.this, "Open", Toast.LENGTH_SHORT).show();
             }
         });
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
 
-          //y position
+        //y position
 
         dialog.show();
 
     }
-
 
 
     private void splashCall() {
