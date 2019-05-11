@@ -47,17 +47,18 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         printHashKey();
-        UpdateApiCall();
+        splashCall();
+        //UpdateApiCall();
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        UpdateApiCall();
+        //UpdateApiCall();
     }
 
-    private void UpdateApiCall() {
+    /*private void UpdateApiCall() {
 
 
         if (Utils.isInternetConnected(this)) {
@@ -97,7 +98,7 @@ public class SplashActivity extends AppCompatActivity {
         }
 
 
-    }
+    }*/
 
 
     private void forceToUpgradeDialog(boolean isForceUpdate) {

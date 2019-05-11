@@ -123,6 +123,7 @@ public class MockTestFragment extends Fragment implements TestAdapter.OnCategory
             intent.putExtra("type", type);
             intent.putExtra("testQuestion", testQuestion);
             intent.putExtra("testStatus",TestStatus);
+            intent.putExtra("testPaid",testPaid);
             startActivity(intent);
 
         }

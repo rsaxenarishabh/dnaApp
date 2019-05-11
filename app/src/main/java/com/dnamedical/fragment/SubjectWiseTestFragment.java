@@ -124,6 +124,7 @@ public class SubjectWiseTestFragment extends Fragment implements TestAdapter.OnC
             intent.putExtra("type", type);
             intent.putExtra("testQuestion", testQuestion);
             intent.putExtra("testStatus",TestStatus);
+            intent.putExtra("testPaid",testPaid);
             startActivity(intent);
 
         }

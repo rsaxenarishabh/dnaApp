@@ -120,4 +120,5 @@
     <string name="dialog_message">dhgdfg</string>
     <string name="dialog_title">kbkbc</string>
     <string name="update_txt">Update into Play Store</string>
+    <string name="payment_alert_text">The Module is available only for pro users. Would you like to learn more about Pro Plans?</string>
 </resources>

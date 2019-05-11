@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,11 @@ public class TestStartActivity extends AppCompatActivity {
     @BindView(R.id.btn_Start)
     Button btnStart;
 
-    String id, duration, testName, testQuestion;
+
+    @BindView(R.id.card_view)
+    CardView cardView;
+
+    String id, duration, testName, testQuestion, testPaid;
     int check_status;
 
     @Override
@@ -38,7 +43,6 @@ public class TestStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_start);
         ButterKnife.bind(this);
 
-
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
             duration = getIntent().getStringExtra("duration");
@@ -46,17 +50,30 @@ public class TestStartActivity extends AppCompatActivity {
             String type = getIntent().getStringExtra("type");
             testQuestion = getIntent().getStringExtra("testQuestion");
             check_status = Integer.parseInt(getIntent().getStringExtra("testStatus"));
+            testPaid = getIntent().getStringExtra("testPaid");
+
             if (check_status == 0) {
                 testTopic.setText(testName);
                 updateTestTypeText(type);
                 btnStart.setText("Start The Test");
             } else {
                 testTopic.setText(testName);
-              updateTestTypeText(type);
+                updateTestTypeText(type);
                 btnStart.setText("Review The Test");
             }
 
         }
+
+        /*if (testPaid.equalsIgnoreCase("No")) {
+            btnStart.setVisibility(View.GONE);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PaymentAlertDialog();
+                }
+            });
+        }*/
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,18 +92,71 @@ public class TestStartActivity extends AppCompatActivity {
         });
     }
 
+    private void PaymentAlertDialog() {
+
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        // ...Irrelevant code for customizing the buttons and titl
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.payment_alert_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final AlertDialog dialog = dialogBuilder.create();
+        Button btn_learnmore = dialogView.findViewById(R.id.btn_learn_more);
+        Button btn_view_plans = dialogView.findViewById(R.id.btn_view_plans);
+
+        TextView text_cancel = dialogView.findViewById(R.id.text_cancel);
+        text_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+            }
+        });
+
+       btn_learnmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(TestStartActivity.this, DNAKnowmoreActivity.class);
+                startActivity(intent);
+                finish();
+                dialog.dismiss();
+
+
+            }
+        });
+
+       btn_view_plans.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent intent = new Intent(TestStartActivity.this, DNASuscribeActivity.class);
+               startActivity(intent);
+               finish();
+               dialog.dismiss();
+
+           }
+       });
+
+        dialog.show();
+
+    }
+
+
+
+
     private void updateTestTypeText(String type) {
-        switch (type){
+        switch (type) {
             case "Grand Test":
-                testInformation.setText("This test contains "+testQuestion+" Q's from all 19 Subjects of MBBS with time duration of "+duration);
+                testInformation.setText("This test contains " + testQuestion + " Q's from all 19 Subjects of MBBS with time duration of " + duration);
                 break;
 
             case "Mini Test":
-                testInformation.setText("This test contains "+testQuestion+" Q's from all 19 Subjects of MBBS with time duration of "+duration);
+                testInformation.setText("This test contains " + testQuestion + " Q's from all 19 Subjects of MBBS with time duration of " + duration);
                 break;
 
             case "Subject Wise Test":
-                testInformation.setText("This test contains "+testQuestion+" Q's from all 19 Subjects of MBBS with time duration of "+duration);
+                testInformation.setText("This test contains " + testQuestion + " Q's from all 19 Subjects of MBBS with time duration of " + duration);
                 break;
 
         }
