@@ -11,10 +11,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.dnamedical.R;
+import com.dnamedical.utils.DnaPrefs;
 import com.dnamedical.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -35,12 +38,14 @@ public class EditProfileActivity extends AppCompatActivity {
     private String update_edit_name;
     private String update_edit_username;
 
+    String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
         ButterKnife.bind(this);
+
         if (getSupportActionBar() != null) {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -71,6 +76,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void validation() {
 
+
+        if (DnaPrefs.getBoolean(getApplicationContext(), "isFacebook")) {
+            userId = String.valueOf(DnaPrefs.getInt(getApplicationContext(), "fB_ID", 0));
+        } else {
+            userId = DnaPrefs.getString(getApplicationContext(), "Login_Id");
+        }
         update_edit_name = editTextUpdateName.getText().toString();
         update_edit_username = editTextUsername.getText().toString();
        /* edit_email = editEmailId.getText().toString();
@@ -90,6 +101,12 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
 
+
+        RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), userId);
+        RequestBody v_title = RequestBody.create(MediaType.parse("text/plain"), update_edit_name);
+        RequestBody v_title1 = RequestBody.create(MediaType.parse("text/plain"), update_edit_username);
+
+        
        /* if (TextUtils.isEmpty(edit_phonetxt)) {
 
             edit_phone.setError(getString(R.string.invalid_email));
