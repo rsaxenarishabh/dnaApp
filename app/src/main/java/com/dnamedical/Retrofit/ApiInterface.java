@@ -20,12 +20,14 @@ import com.dnamedical.Models.qbank.QbankResponse;
 import com.dnamedical.Models.qbankstart.QbankstartResponse;
 import com.dnamedical.Models.test.TestQuestionData;
 import com.dnamedical.Models.updateplaystore.PlaystoreUpdateResponse;
+import com.dnamedical.Models.verifyid.VerifyIdResponse;
 import com.dnamedical.Models.video.VideoList;
 import com.dnamedical.Models.login.loginResponse;
 import com.dnamedical.Models.maincat.CategoryDetailData;
 import com.dnamedical.Models.registration.CommonResponse;
 
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -188,4 +190,14 @@ public interface ApiInterface {
 
     @GET("api/api.php?req=promotionvideo")
     Call<PromoVideo> getVideo();
+
+
+
+
+    @Multipart
+    @POST("http://localhost/dnaadmin/api/api.php?req=id_verify")
+    Call<VerifyIdResponse> verifyDetail(@Part("user_id") RequestBody user_id,
+                                        @Part("v_title") RequestBody v_title,
+                                        @Part MultipartBody.Part body);
+
 }

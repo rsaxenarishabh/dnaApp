@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class CameraUtils {
 
     /**

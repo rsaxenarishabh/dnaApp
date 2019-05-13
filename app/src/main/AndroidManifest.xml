@@ -23,8 +23,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Activities.ChangePasswordActivity"></activity>
-        <activity android:name=".Activities.IdVerificationActivitty" />
-        <activity android:name=".Activities.EditProfileActivity" />
+        <activity android:name=".Activities.IdVerificationActivitty"
+            android:theme="@style/AppTheme5"
+            android:label="Verification "/>
+        <activity android:name=".Activities.EditProfileActivity"
+            android:theme="@style/AppTheme5"
+            android:label="Edit Profile"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Activities.AboutUsActivit" />
         <activity
             android:name=".Activities.FranchiActivity"
@@ -180,6 +185,16 @@
         <activity
             android:name=".Activities.ResultActivity"
             android:screenOrientation="portrait" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

@@ -21,6 +21,7 @@ import com.dnamedical.Models.qbank.QbankResponse;
 import com.dnamedical.Models.qbankstart.QbankstartResponse;
 import com.dnamedical.Models.test.TestQuestionData;
 import com.dnamedical.Models.updateplaystore.PlaystoreUpdateResponse;
+import com.dnamedical.Models.verifyid.VerifyIdResponse;
 import com.dnamedical.Models.video.VideoList;
 import com.dnamedical.Models.login.loginResponse;
 import com.dnamedical.Models.maincat.CategoryDetailData;
@@ -158,5 +159,9 @@ public class RestClient {
 
     public static void getVideo(Callback<PromoVideo> responseBodyCallback) {
         RetrofitClient.getClient().getVideo().enqueue(responseBodyCallback);
+    }
+
+    public static void verifyDetail(RequestBody user_id, RequestBody v_title, MultipartBody.Part image, Callback<VerifyIdResponse> callback) {
+        RetrofitClient.getClient().verifyDetail(user_id, v_title, image);
     }
 }

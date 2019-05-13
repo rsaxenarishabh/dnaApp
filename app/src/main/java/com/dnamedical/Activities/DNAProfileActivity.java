@@ -157,7 +157,7 @@ public class DNAProfileActivity extends AppCompatActivity implements View.OnClic
             case R.id.profile_edit:
                 Intent intent = new Intent(DNAProfileActivity.this, EditProfileActivity.class);
                 startActivity(intent);
-                return true;
+           return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
