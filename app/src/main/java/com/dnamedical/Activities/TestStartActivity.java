@@ -169,7 +169,6 @@ public class TestStartActivity extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.start_test_alertdialog, null);
         dialogBuilder.setView(dialogView);
-
         final AlertDialog dialog = dialogBuilder.create();
         Button btn_yes = dialogView.findViewById(R.id.btn_done);
         TextView text_cancel = dialogView.findViewById(R.id.text_cancel);
