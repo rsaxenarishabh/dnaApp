@@ -41,7 +41,7 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
     @Multipart
-    @POST("http://192.168.1.13/dnaadmin/api/api.php?req=login")
+    @POST("api/api.php?req=login")
     Call<loginResponse> loginUser(@Part("email_id") RequestBody email, @Part("password") RequestBody password);
 
 
