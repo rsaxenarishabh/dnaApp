@@ -1,6 +1,7 @@
 package com.dnamedical.Retrofit;
 
 import com.dnamedical.Models.Directors;
+import com.dnamedical.Models.EditProfileResponse.EditProfileResponse;
 import com.dnamedical.Models.PromoVideo;
 import com.dnamedical.Models.QbankSubCat.QbankSubResponse;
 import com.dnamedical.Models.QbankSubTest.QbankTestResponse;
@@ -32,6 +33,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Callback;
+import retrofit2.http.Part;
 
 public class RestClient {
     private static final String TAG = "RestClient";
@@ -50,6 +52,12 @@ public class RestClient {
 
     public static void registerUser(RequestBody name, RequestBody username, RequestBody email_id, RequestBody phone, RequestBody statetxt, RequestBody password, RequestBody college, MultipartBody.Part vFile, Callback<CommonResponse> callback) {
         RetrofitClient.getClient().registerUser(name, username, email_id, phone, statetxt, password, college).enqueue(callback);
+    }
+
+
+
+    public static void editProfile(RequestBody id, RequestBody username, RequestBody mobile_no, RequestBody state, RequestBody college, Callback<EditProfileResponse> callback) {
+        RetrofitClient.getClient().editProfile(id, username, mobile_no, state, college).enqueue(callback);
     }
 
     public static void franchiesRegister(RequestBody username, RequestBody phoneno, RequestBody usermail, RequestBody comment, Callback<FranchiesResponse> callback) {

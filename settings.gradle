@@ -1,3 +1,4 @@
 include ':app', ':easy-player', ':indicatorseekbar', ':pinentryedittext'
 
 
+include ':libraryMobilePaymentSDK'

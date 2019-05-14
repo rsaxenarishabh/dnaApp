@@ -1,6 +1,7 @@
 package com.dnamedical.Retrofit;
 
 import com.dnamedical.Models.Directors;
+import com.dnamedical.Models.EditProfileResponse.EditProfileResponse;
 import com.dnamedical.Models.PromoVideo;
 import com.dnamedical.Models.QbankSubCat.QbankSubResponse;
 import com.dnamedical.Models.QbankSubTest.QbankTestResponse;
@@ -40,7 +41,7 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
     @Multipart
-    @POST("api/api.php?req=login")
+    @POST("http://192.168.1.13/dnaadmin/api/api.php?req=login")
     Call<loginResponse> loginUser(@Part("email_id") RequestBody email, @Part("password") RequestBody password);
 
 
@@ -61,6 +62,15 @@ public interface ApiInterface {
                                             @Part("phoneno") RequestBody phoneno,
                                             @Part("usermail") RequestBody usermail,
                                             @Part("comment") RequestBody comment);
+
+
+@Multipart
+@POST("http://192.168.1.13/dnaadmin/api/api.php?req=update_user")
+Call<EditProfileResponse> editProfile(@Part("id") RequestBody id,
+                                      @Part("username") RequestBody username,
+                                      @Part("mobile_no") RequestBody mobile_no,
+                                      @Part("state") RequestBody state,
+                                      @Part("college") RequestBody college);
 
 
     @Multipart

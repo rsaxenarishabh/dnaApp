@@ -59,6 +59,9 @@ public class DNAProfileActivity extends AppCompatActivity implements View.OnClic
 
     @BindView(R.id.change_phone)
     TextView textViewChangePhone;
+    String state,college,name,image ,email;
+
+
 
 
     @Override
@@ -113,11 +116,11 @@ public class DNAProfileActivity extends AppCompatActivity implements View.OnClic
 
     private void setprofiledata() {
         Intent intent = getIntent();
-        String state = DnaPrefs.getString(getApplicationContext(), "STATE");
-        String college = DnaPrefs.getString(getApplicationContext(), "COLLEGE");
-        String name = DnaPrefs.getString(getApplicationContext(), "NAME");
-        String image = DnaPrefs.getString(getApplicationContext(), "URL");
-        String email = DnaPrefs.getString(getApplicationContext(), "EMAIL");
+         state = DnaPrefs.getString(getApplicationContext(), "STATE");
+         college = DnaPrefs.getString(getApplicationContext(), "COLLEGE");
+         name = DnaPrefs.getString(getApplicationContext(), "NAME");
+         image = DnaPrefs.getString(getApplicationContext(), "URL");
+         email = DnaPrefs.getString(getApplicationContext(), "EMAIL");
 
         tvName.setText("" + name);
         tvEmail.setText("" + email);
