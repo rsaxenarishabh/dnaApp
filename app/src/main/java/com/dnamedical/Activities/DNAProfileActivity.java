@@ -31,6 +31,7 @@ public class DNAProfileActivity extends AppCompatActivity implements View.OnClic
 
     @BindView(R.id.profile_image)
     CircleImageView circleImageView;
+
     @BindView(R.id.profile_name)
     TextView tvName;
 
@@ -59,6 +60,7 @@ public class DNAProfileActivity extends AppCompatActivity implements View.OnClic
 
     @BindView(R.id.change_phone)
     TextView textViewChangePhone;
+
     String state,college,name,image ,email;
 
 

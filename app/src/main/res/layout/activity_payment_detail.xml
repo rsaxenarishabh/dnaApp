@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".Activities.PaymentDetailActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp">
+
+
+        <LinearLayout
+            android:id="@+id/linear_one"
+            android:background="@drawable/edittextstyle"
+            android:padding="@dimen/padding_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/margin_12"
+                    android:text="INR 34456.00"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/view_breakup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+
+                    android:gravity="end"
+                    android:padding="@dimen/padding_5"
+                    android:text="View Breakup"
+                    android:textColor="@color/orange"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_4"
+                    android:text="Order #:"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginLeft="@dimen/padding_10"
+                    android:layout_weight="1"
+                    android:padding="@dimen/padding_5"
+                    android:text="dvdhdvhs8498589h8eo"
+                    android:textColor="@color/orange"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/darkwhite" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/padding_5"
+                    android:text="Order Amount"
+                    android:textColor="@color/black_titles"
+
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:padding="@dimen/padding_5"
+                    android:text="34345.00"
+                    android:textColor="@color/black_titles"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/darkwhite" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_5">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/padding_5"
+                    android:text="Total Amount"
+                    android:textColor="@color/black_titles"
+                    android:textSize="22sp"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:padding="@dimen/padding_5"
+                    android:text="INR 34345.00"
+                    android:textColor="@color/black_titles"
+                    android:textSize="20sp"
+
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginBottom="@dimen/margin_top_30"
+            android:layout_marginTop="@dimen/margin_top_20"
+            android:layout_below="@id/linear_one"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:padding="@dimen/padding_10"
+                android:textSize="18sp"
+                android:background="@drawable/payment_details_design"
+                android:text="Billing Information"/>
+
+
+            <TextView
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="@dimen/padding_10"
+                android:textSize="18sp"
+                android:background="@drawable/payment_txt_design"
+                android:text="Sumit"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="@dimen/padding_10"
+                android:textSize="18sp"
+                android:background="@drawable/payment_txt_design"
+                android:text="CC"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="@dimen/padding_10"
+                android:textSize="18sp"
+                android:background="@drawable/payment_txt_design"
+                android:text="203010"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="@dimen/padding_10"
+                android:textSize="18sp"
+                android:background="@drawable/payment_txt_design"
+                android:text="Rampur"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="@dimen/padding_10"
+                android:textSize="18sp"
+                android:background="@drawable/payment_txt_design"
+                android:text="Arunachal Pradesh"/>
+            <TextView
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="@dimen/padding_10"
+                android:textSize="18sp"
+                android:background="@drawable/payment_txt_design"
+                android:text="123456789987"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="@dimen/padding_10"
+                android:textSize="18sp"
+                android:background="@drawable/payment_txt_design"
+                android:text="raj95288@gmail.com"/>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

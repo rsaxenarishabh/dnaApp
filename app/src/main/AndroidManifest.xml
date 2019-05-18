@@ -7,12 +7,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-feature android:name="android.hardware.Camera"
-        android:required="false"/>
-
-
+    <uses-feature
+        android:name="android.hardware.Camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -22,14 +21,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.ChangePasswordActivity"></activity>
-        <activity android:name=".Activities.IdVerificationActivitty"
-            android:theme="@style/AppTheme5"
-            android:label="Verification "/>
-        <activity android:name=".Activities.EditProfileActivity"
-            android:theme="@style/AppTheme5"
+       <activity android:name=".Activities.PaymentDetailActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/AppTheme5"/>
+
+        <activity
+            android:name=".Activities.PaymentGatewayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme5" />
+        <activity
+            android:name=".Activities.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.IdVerificationActivitty"
+            android:label="Verification "
+            android:theme="@style/AppTheme5" />
+        <activity
+            android:name=".Activities.EditProfileActivity"
             android:label="Edit Profile"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme5" />
         <activity android:name=".Activities.AboutUsActivit" />
         <activity
             android:name=".Activities.FranchiActivity"
@@ -83,6 +94,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme6">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -195,12 +207,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-        <activity
-            android:name="com.atom.mobilepaymentsdk.PayActivity"
-            android:label="@string/app_name" >
-        </activity>
-
     </application>
 
 </manifest>

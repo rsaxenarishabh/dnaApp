@@ -84,6 +84,8 @@
     <string name="contact_top_text">Please use any of the following modes to get in touch with us..</string>
     <string name="try_other_login">Try other login methods</string>
     <string name="terms">Terms Conditions</string>
+    <string name="view_breakup">View Breakup</string>
+
     <string name="privacy"> and Privacy Policy</string>
     <string name="rupay">Rs. 3,500</string>
 
@@ -121,4 +123,8 @@
     <string name="dialog_title">kbkbc</string>
     <string name="update_txt">Update into Play Store</string>
     <string name="payment_alert_text">The Module is available only for pro users. Would you like to learn more about Pro Plans?</string>
+
+
+    <string name="billing_txt">Enter Billing/Shipping</string>
+    <string name="billing_txt_one">Information</string>
 </resources>
