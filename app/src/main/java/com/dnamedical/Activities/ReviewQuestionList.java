@@ -91,14 +91,19 @@ public class ReviewQuestionList extends AppCompatActivity {
                             testReviewList = response.body();
                             if (testReviewList != null && testReviewList.getDetail().size() > 0) {
                                 Log.d("Api Response :", "Got Success from Api");
-                                ReviewQuestionListAdapter reviewQuestionListAdapter = new ReviewQuestionListAdapter(getApplicationContext());
-                                reviewQuestionListAdapter.setTestReviewList(testReviewList.getDetail());
-                                Log.d("Api Response :", "Got Success from data");
-                                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                                recyclerView.setLayoutManager(mLayoutManager);
-                                Log.d("Api Response :", "Got Success from layout");
-                                recyclerView.setAdapter(reviewQuestionListAdapter);
-                                Log.d("Api Response :", "Got Success from send");
+
+                                if (testReviewList.getDetail().get(0).getQid() != null) {
+                                    ReviewQuestionListAdapter reviewQuestionListAdapter = new ReviewQuestionListAdapter(getApplicationContext());
+                                    reviewQuestionListAdapter.setTestReviewList(testReviewList.getDetail());
+                                    Log.d("Api Response :", "Got Success from data");
+                                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                                    recyclerView.setLayoutManager(mLayoutManager);
+                                    Log.d("Api Response :", "Got Success from layout");
+                                    recyclerView.setAdapter(reviewQuestionListAdapter);
+                                    Log.d("Api Response :", "Got Success from send");
+                                } else {
+                                    Toast.makeText(ReviewQuestionList.this, "No Question Available", Toast.LENGTH_SHORT).show();
+                                }
                             }
 
                         }
@@ -116,8 +121,7 @@ public class ReviewQuestionList extends AppCompatActivity {
             });
 
 
-        }
-        else {
+        } else {
             Toast.makeText(this, "Internet Connection Failed", Toast.LENGTH_SHORT).show();
             Utils.dismissProgressDialog();
         }
