@@ -64,10 +64,7 @@ public class VideoListPriceAdapter extends RecyclerView.Adapter<VideoListPriceAd
         } else {
             return 0;
         }
-
     }
-
-
     public void setData(List<Price> CourseLists) {
         this.priceList = CourseLists;
     }

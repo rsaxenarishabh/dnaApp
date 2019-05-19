@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -30,7 +31,10 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import butterknife.BindView;
@@ -281,8 +285,11 @@ public class IdVerificationActivitty extends AppCompatActivity {
 
             ShowPicture.setVisibility(View.VISIBLE);
 
+
             Bitmap bitmap = CameraUtils.optimizeBitmap(BITMAP_SAMPLE_SIZE, imageStoragePath);
 
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
             ShowPicture.setImageBitmap(bitmap);
 
 
@@ -307,5 +314,29 @@ public class IdVerificationActivitty extends AppCompatActivity {
                     }
                 }).show();
     }
+
+
+  /*  public void compressBitmap(File file, int sampleSize, int quality) {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = sampleSize;
+            FileInputStream inputStream = new FileInputStream(file);
+
+            Bitmap selectedBitmap = BitmapFactory.decodeStream(inputStream, null, options);
+            inputStream.close();
+
+            FileOutputStream outputStream = new FileOutputStream("location to save");
+            selectedBitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.close();
+            long lengthInKb = photo.length() / 1024; //in kb
+            if (lengthInKb > SIZE_LIMIT) {
+                compressBitmap(file, (sampleSize*2), (quality/4));
+            }
+
+            selectedBitmap.recycle();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 
 }

@@ -64,20 +64,20 @@ public interface ApiInterface {
                                             @Part("comment") RequestBody comment);
 
 
-@Multipart
-@POST("http://192.168.1.13/dnaadmin/api/api.php?req=update_user")
-Call<EditProfileResponse> editProfile(@Part("id") RequestBody id,
-                                      @Part("username") RequestBody username,
-                                      @Part("mobile_no") RequestBody mobile_no,
-                                      @Part("state") RequestBody state,
-                                      @Part("college") RequestBody college);
+    @Multipart
+    @POST("api/api.php?req=update_user")
+    Call<EditProfileResponse> editProfile(@Part("id") RequestBody id,
+                                          @Part("username") RequestBody username,
+                                          @Part("mobile_no") RequestBody mobile_no,
+                                          @Part("state") RequestBody state,
+                                          @Part("college") RequestBody college);
 
 
     @Multipart
     @POST("api/api.php?req=facebook")
     Call<FacebookResponse> facebookRegister(@Part("name") RequestBody name,
                                             @Part("email_id") RequestBody emailId,
-                                             @Part("fb_id") RequestBody facebookbId);
+                                            @Part("fb_id") RequestBody facebookbId);
 
 
     @GET("api/api.php?req=category")
@@ -88,8 +88,6 @@ Call<EditProfileResponse> editProfile(@Part("id") RequestBody id,
 
     @GET("api/api.php?req=getreleasedetail")
     Call<PlaystoreUpdateResponse> playstoreUpdate();
-
-
 
 
     @Multipart
@@ -116,8 +114,7 @@ Call<EditProfileResponse> editProfile(@Part("id") RequestBody id,
     @Multipart
     @POST("api/api.php?req=result")
     Call<ResultList> resultList(@Part("user_id") RequestBody user_id,
-                            @Part("test_id") RequestBody test_id);
-
+                                @Part("test_id") RequestBody test_id);
 
 
     @Multipart
@@ -147,8 +144,7 @@ Call<EditProfileResponse> editProfile(@Part("id") RequestBody id,
 
     @Multipart
     @POST("api/api.php?req=qbankmodulereview")
-    Call<ReviewListResponse> qbankReview(@Part("user_id") RequestBody user_id,@Part("qmodule_id") RequestBody qmodule_id );
-
+    Call<ReviewListResponse> qbankReview(@Part("user_id") RequestBody user_id, @Part("qmodule_id") RequestBody qmodule_id);
 
 
     /*@Multipart
@@ -160,24 +156,21 @@ Call<EditProfileResponse> editProfile(@Part("id") RequestBody id,
     Call<Directors> knowMoreData();
 
     @Multipart
-     @POST("api/api.php?req=qbank_subcate")
-    Call<QbankSubResponse> qbanksubdata(@Part("qcat_id") RequestBody qcat_id,@Part("user_id") RequestBody user_id);
-
-
+    @POST("api/api.php?req=qbank_subcate")
+    Call<QbankSubResponse> qbanksubdata(@Part("qcat_id") RequestBody qcat_id, @Part("user_id") RequestBody user_id);
 
 
     @Multipart
     @POST("api/api.php?req=qbank_solve")
     Call<QbankstartResponse> qbankStart(@Part("qmodule_id") RequestBody qmodule_id,
                                         @Part("user_id") RequestBody user_id
-                                        ,@Part("is_paused") RequestBody is_paused);
+            , @Part("is_paused") RequestBody is_paused);
 
     @POST("api/api.php?req=qbank_mcq_model_feedback")
     Call<QbankfeedbackResponse> qbankFeedback(@Query("user_id") String user_id,
-                                              @Query("qmodule_id")String qmodule_id,
+                                              @Query("qmodule_id") String qmodule_id,
                                               @Query("rating") String rating,
                                               @Query("feedback") String feedback);
-
 
 
     @GET("api/api.php?req=qbank_mcq_atteped_answer")
@@ -196,16 +189,14 @@ Call<EditProfileResponse> editProfile(@Part("id") RequestBody id,
     Call<VerifyOtpResponse> verifyOTP(
             @Part("user_id") RequestBody user_id,
             @Part("code") RequestBody code
-            );
+    );
 
     @GET("api/api.php?req=promotionvideo")
     Call<PromoVideo> getVideo();
 
 
-
-
     @Multipart
-    @POST("http://localhost/dnaadmin/api/api.php?req=id_verify")
+    @POST("api/api.php?req=id_verify")
     Call<VerifyIdResponse> verifyDetail(@Part("user_id") RequestBody user_id,
                                         @Part("v_title") RequestBody v_title,
                                         @Part MultipartBody.Part body);

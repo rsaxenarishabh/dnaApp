@@ -18,6 +18,7 @@ import com.dnamedical.Adapters.CollegeListAdapter;
 import com.dnamedical.Adapters.StateListAdapter;
 import com.dnamedical.Models.EditProfileResponse.EditProfileResponse;
 import com.dnamedical.Models.StateList.College;
+import com.dnamedical.Models.StateList.Detail;
 import com.dnamedical.Models.StateList.StateListResponse;
 import com.dnamedical.Models.collegelist.CollegeListResponse;
 import com.dnamedical.R;
@@ -160,6 +161,17 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (response.body() != null) {
                         if (response.body().getStatus().equalsIgnoreCase("true")) {
                             Toast.makeText(EditProfileActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
+
+
+                            DnaPrefs.putString(getApplicationContext(), "STATE", StateText);
+                            DnaPrefs.putString(getApplicationContext(), "COLLEGE", collegetext);
+
+                            DnaPrefs.putString(getApplicationContext(), "NAME", update_edit_name);
+
+                            editTextUpdateName.setText("");
+                            edit_phone.setText("");
+
+
                         }
                     }
                 }
@@ -192,20 +204,19 @@ public class EditProfileActivity extends AppCompatActivity {
                             if (response.body().getStatus().equalsIgnoreCase("1")) {
                                 stateListResponse = response.body();
                                 if (stateListResponse != null && stateListResponse.getDetails().size() > 0) {
-                                    StateText = "Etawah";
                                     stateListAdapter = new StateListAdapter(getApplicationContext());
+                                    int position = getSttePositio(stateListResponse.getDetails(), StateText);
+
                                     stateListAdapter.setStateList(stateListResponse.getDetails());
-
-
+                                    spinState.setAdapter(stateListAdapter);
+                                    spinState.setSelection(position);
                                 }
-                            }
-                            spinState.setAdapter(stateListAdapter);
+                                }
                             spinState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 @Override
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                     collegeList = stateListResponse.getDetails().get(position).getCollege();
                                     StateText = stateListResponse.getDetails().get(position).getStateName();
-
                                     Log.d("StateName", StateText);
                                     sendCollegeListData();
                                 }
@@ -236,6 +247,16 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+    private int getSttePositio(List<Detail> details,String stateText) {
+        for (int i =0;i<details.size();i++){
+            Detail detail = details.get(i);
+            if (detail.getStateName().equalsIgnoreCase(stateText)){
+                return i;
+            }
+        }
+      return 0;
+    }
+
     private void sendCollegeListData() {
         if (collegeList != null && collegeList.size() > 0) {
             CollegeListAdapter collegeListAdapter = new CollegeListAdapter(getApplicationContext());
@@ -252,6 +273,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     collegetext = collegeList.get(position).getName();
+                    DnaPrefs.putInt(getApplicationContext(),"collegePosition",position);
                     Log.d("CollegeTxt", collegetext);
 
                 }

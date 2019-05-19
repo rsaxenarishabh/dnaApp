@@ -84,6 +84,12 @@ public class DNAProfileActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setprofiledata();
+    }
+
     private void userlogout() {
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);

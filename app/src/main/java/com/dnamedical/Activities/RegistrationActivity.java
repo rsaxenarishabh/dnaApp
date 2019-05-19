@@ -42,6 +42,7 @@ import com.dnamedical.Models.registration.CommonResponse;
 import com.dnamedical.R;
 import com.dnamedical.Retrofit.RestClient;
 import com.dnamedical.utils.Constants;
+import com.dnamedical.utils.DnaPrefs;
 import com.dnamedical.utils.Utils;
 
 import okhttp3.MediaType;
@@ -182,7 +183,7 @@ public class RegistrationActivity extends AppCompatActivity implements
                             if (response.body().getStatus().equalsIgnoreCase("1")) {
                                 stateListResponse = response.body();
                                 if (stateListResponse != null && stateListResponse.getDetails().size() > 0) {
-                                    StateText = stateListResponse.getDetails().get(0).getStateName();
+                                    StateText = stateListResponse.getDetails().get(5).getStateName();
                                     stateListAdapter = new StateListAdapter(getApplicationContext());
                                     stateListAdapter.setStateList(stateListResponse.getDetails());
 
@@ -195,7 +196,7 @@ public class RegistrationActivity extends AppCompatActivity implements
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                     collegeList = stateListResponse.getDetails().get(position).getCollege();
                                     StateText = stateListResponse.getDetails().get(position).getStateName();
-
+                                    DnaPrefs.putInt(getApplicationContext(),"statePosition",position);
                                     Log.d("StateName", StateText);
                                     sendCollegeListData();
                                 }
@@ -242,6 +243,7 @@ public class RegistrationActivity extends AppCompatActivity implements
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     collegetext = collegeList.get(position).getName();
+                    DnaPrefs.putInt(getApplicationContext(),"stateCollege",position);
                     Log.d("CollegeTxt", collegetext);
 
                 }
